@@ -117,7 +117,7 @@ void analogueBar (int fullScale, int xPos, int yPos, int maxValue, int val )
 	val2 = map(val2, 0, 9, 0, 4); // then in range 0-4
 	val = val / 10; // this allows to compute the actual number of full segments to be lit
 
-	if(val != temp1) //if a variation from previous pot value reading is detected, then bargraph routine is recalled
+	if(val != temp1) //if a variation from previous "val" value reading is detected, then bargraph routine is recalled
 	{
 		if (val < temp1)
 		{
@@ -127,7 +127,7 @@ void analogueBar (int fullScale, int xPos, int yPos, int maxValue, int val )
 
 		temp1 = val;
 		lcd.setCursor (xPos, yPos);
-		for (int i = 0; i <= val; i++) //fill bargraph, integer part
+		for (int i = 0; i <= val; i++) //fill bargraph, integer blocks display
 		{
 			curs = i + xPos;
 			lcd.setCursor (curs, yPos);
