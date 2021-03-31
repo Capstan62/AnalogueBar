@@ -59,7 +59,7 @@ void setup()
 
 	lcd.home();
 
-	lcd.print("A. Capitani 2015"); //print welcome screen
+	lcd.print("A. Capitani 2015"); //prints welcome screen
 	lcd.setCursor (0, 1);
 	lcd.print("Progressbar Demo");
 	delay(2000);
@@ -85,10 +85,11 @@ void loop()
 		/*
 		PLEASE NOTE analogueBar FUNCTION PARAMETERS:
 		analogueBar (int fullScale, int xPos, int yPos, int maxValue, int val )
-		    fullScale // max bar lenght
-			xPos // horizontal start (n-1)
-			int yPos = 1 // row select (n-1)
-			int maxValue // max input value to get fullscale representatin
+		        int fullScale // max bar lenght (in LCD "character blocks")
+			int xPos // horizontal start (n-1) position in the display
+			int yPos = 1 // row select (n-1) in the display
+			int maxValue // max input value to get fullscale representation
+			int Val (0<= Val <= maxValue), the value to be graphically represented as a linear bar.
 		*/
 
 	
@@ -96,7 +97,7 @@ void loop()
 
 
 
-String clockStr(long mi)
+String clockStr(long mi)  // function that converts "millisec" value in HH:MM:SS format, then converting as a string
 {
 	mi = mi / 1000;
 	String s = String(mi % 60);
@@ -111,12 +112,6 @@ String clockStr(long mi)
 
 void analogueBar (int fullScale, int xPos, int yPos, int maxValue, int val )
 {
-	/*	int fullScale = 16; // max bar lenght
-		int xPos = 0; // horizontal start
-		int yPos = 1; // row select
-		int maxValue = 1024; // max input value to get fullscale representatin
-	*/
-
 	val = map(val, 0, maxValue, 0, fullScale * 11); 
 	int val2 = val % 10; // this allows to compute the sub segment(s) to be lit, in 0-9 range
 	val2 = map(val2, 0, 9, 0, 4); // then in range 0-4
@@ -127,7 +122,7 @@ void analogueBar (int fullScale, int xPos, int yPos, int maxValue, int val )
 		if (val < temp1)
 		{
 			lcd.setCursor (curs - 1, yPos); //taking care of bar deletion when decreasing, anti flicker
-			lcd.print("        ");	    // a single empty char is not enough, this avoids problems in case of sudden variation...
+			lcd.print("        ");	    // a single empty char is not enough, this avoids problems in case of sudden "val" variation...
 		}
 
 		temp1 = val;
