@@ -1,9 +1,7 @@
 /*     
-  DEMO SKETCH FOR THE BUILT IN LCD DISPLAY AND POTENTIOMETER
-      
-
-DISPLAYS ARDUINO'S BUILT 'MILLISEC' TIMER IN FORM OF HH:MM:SS
-    PLUS AN ANALOGUE BAR REPRESENTING POTENTIOMETER VALUE
+        DEMO SKETCH FOR LCD DISPLAY AND POTENTIOMETER 
+  DISPLAYS ARDUINO'S BUILT 'MILLISEC' TIMER IN FORM OF HH:MM:SS
+     PLUS AN ANALOGUE BAR REPRESENTING POTENTIOMETER VALUE
 
 Copyright (c) <2015> Alessando Capitani
 
@@ -96,12 +94,7 @@ void loop()
 	
 } 
 
-String formatInt(int x, int len)
-{
-	String r = String(x);
-	while(r.length() < len)r = "0" + r;
-	return r;
-}
+
 
 String clockStr(long mi)
 {
@@ -115,16 +108,6 @@ String clockStr(long mi)
 	return h + ":" + m + ":" + s;
 }
 
-void clock(long mi, int & h, int & m, int & s)
-{
-
-	mi = mi / 1000;
-	s = mi % 60;
-	m = (mi / 60) % 60;
-	h = (mi / 3600) % 60;
-	return;
-
-}
 
 void analogueBar (int fullScale, int xPos, int yPos, int maxValue, int val )
 {
